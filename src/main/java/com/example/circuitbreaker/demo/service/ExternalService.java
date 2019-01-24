@@ -6,6 +6,7 @@ import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.timelimiter.TimeLimiter;
 import io.vavr.control.Try;
 
+import java.time.Duration;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,17 +27,38 @@ public abstract class ExternalService {
 
     public abstract SampleDTO timeout();
 
-    <T> T callSupplier(Callable<T> callable) {
+
+    //TODO: Verificar necessidade de metodo generico
+//    <T> T callSupplier(Callable<T> callable) {
+//
+//        ExecutorService executorService = Executors.newSingleThreadExecutor();
+//        Supplier<Future<T>> futureSupplier = () -> executorService.submit(callable);
+//
+//        Callable<T> supplier = TimeLimiter.decorateFutureSupplier(timeLimiter, futureSupplier);
+//        Callable<T> chainedCallable = CircuitBreaker.decorateCallable(circuitBreaker, supplier);
+//
+//        Try<T> tried = Try.of(chainedCallable::call)
+//                .onFailure(throwable -> {
+//                    throw new ExternalServiceCallException("External call unreachable");
+//                });
+//
+//        return tried.get();
+//    }
+
+    SampleDTO callSupplier(Callable<SampleDTO> callable) {
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Supplier<Future<T>> futureSupplier = () -> executorService.submit(callable);
+        Supplier<Future<SampleDTO>> futureSupplier = () -> executorService.submit(callable);
 
-        Callable<T> supplier = TimeLimiter.decorateFutureSupplier(timeLimiter, futureSupplier);
-        Callable<T> chainedCallable = CircuitBreaker.decorateCallable(circuitBreaker, supplier);
+        Callable<SampleDTO> supplier = TimeLimiter.decorateFutureSupplier(timeLimiter, futureSupplier);
+        Callable<SampleDTO> chainedCallable = CircuitBreaker.decorateCallable(circuitBreaker, supplier);
 
-        Try<T> tried = Try.of(chainedCallable::call)
+        long start = System.nanoTime();
+
+        Try<SampleDTO> tried = Try.of(chainedCallable::call)
+                .onSuccess(v -> v.setRequestTime(Duration.ofNanos(System.nanoTime() - start).toMillis()))
                 .onFailure(throwable -> {
-                    throw new ExternalServiceCallException("External call unreachable");
+                    throw new ExternalServiceCallException("External call unreachable", System.nanoTime() - start);
                 });
 
         return tried.get();

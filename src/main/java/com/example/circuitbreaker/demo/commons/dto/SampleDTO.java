@@ -3,15 +3,15 @@ package com.example.circuitbreaker.demo.commons.dto;
 public class SampleDTO {
 
     private String msg;
-    private long time;
+    private long requestTime;
 
     public SampleDTO(String msg) {
         this.msg = msg;
     }
 
-    public SampleDTO(String msg, long time) {
+    public SampleDTO(String msg, long requestTime) {
         this.msg = msg;
-        this.time = time;
+        this.requestTime = requestTime;
     }
 
     public SampleDTO() {
@@ -25,11 +25,11 @@ public class SampleDTO {
         this.msg = msg;
     }
 
-    public long getTime() {
-        return time;
+    public long getRequestTime() {
+        return requestTime;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setRequestTime(long requestTime) {
+        this.requestTime = requestTime;
     }
 }
