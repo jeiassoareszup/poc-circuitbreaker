@@ -4,9 +4,9 @@ import com.example.circuitbreaker.demo.commons.dto.SampleDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@FeignClient(name="externalService1Connector", url = "http://www.mocky.io")
+@FeignClient(name="externalService1Connector", url = "http://localhost:9009/external-service1")
 public interface ExternalService1Connector {
 
-    @RequestMapping("/v2/5c477ace3100002b008a1e08")
+    @RequestMapping("/confirmation")
     SampleDTO getConfirmation();
 }

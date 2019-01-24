@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/external-service2/timeout"
+  },
+  "response": {
+    "status": 504,
+    "fixedDelayMilliseconds": 10000,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {"msg": "message received!"}
+  }
+}

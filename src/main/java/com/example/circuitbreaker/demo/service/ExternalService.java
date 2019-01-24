@@ -1,6 +1,7 @@
 package com.example.circuitbreaker.demo.service;
 
 import com.example.circuitbreaker.demo.commons.dto.SampleDTO;
+import com.example.circuitbreaker.demo.commons.example.ExternalServiceCallException;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.timelimiter.TimeLimiter;
 import io.vavr.control.Try;
@@ -34,7 +35,9 @@ public abstract class ExternalService {
         Callable<T> chainedCallable = CircuitBreaker.decorateCallable(circuitBreaker, supplier);
 
         Try<T> tried = Try.of(chainedCallable::call)
-                .onFailure(throwable -> new RuntimeException("service call failed."));
+                .onFailure(throwable -> {
+                    throw new ExternalServiceCallException("External call unreachable");
+                });
 
         return tried.get();
     }
