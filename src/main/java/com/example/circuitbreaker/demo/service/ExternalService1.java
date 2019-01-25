@@ -27,6 +27,6 @@ public class ExternalService1 extends ExternalService {
 
     @Override
     public SampleDTO timeout() {
-        return null;
+        return super.callSupplier(service1Connector::getTimeout);
     }
 }

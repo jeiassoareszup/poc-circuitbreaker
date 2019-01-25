@@ -20,7 +20,7 @@ public class ExternalService2 extends ExternalService {
 
     @Override
     public SampleDTO confirm() {
-        return new SampleDTO("Service2 received message: ");
+        return super.callSupplier(service2Connector::getConfirmation);
     }
 
     @Override

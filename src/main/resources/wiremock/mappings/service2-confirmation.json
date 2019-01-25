@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/external-service2/confirmation"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {"msg": "service 2: message received!"}
+  }
+}

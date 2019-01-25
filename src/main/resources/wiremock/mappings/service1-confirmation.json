@@ -8,6 +8,6 @@
     "headers": {
       "Content-Type": "application/json"
     },
-    "jsonBody": {"msg": "message received!"}
+    "jsonBody": {"msg": "service 1: message received!"}
   }
 }

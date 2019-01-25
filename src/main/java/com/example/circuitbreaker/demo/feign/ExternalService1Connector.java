@@ -9,4 +9,7 @@ public interface ExternalService1Connector {
 
     @RequestMapping("/confirmation")
     SampleDTO getConfirmation();
+
+    @RequestMapping("/timeout")
+    SampleDTO getTimeout();
 }

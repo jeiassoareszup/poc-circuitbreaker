@@ -29,4 +29,8 @@ public class InternalService {
     public SampleDTO getService2Confirmation() {
         return service2.confirm();
     }
+
+    public SampleDTO getService1Timeout() {
+        return service1.timeout();
+    }
 }

@@ -26,6 +26,11 @@ public class SampleController {
         return internalService.getService2Timeout();
     }
 
+    @GetMapping("/service1/timeout")
+    public SampleDTO getService1Timeout() {
+        return internalService.getService1Timeout();
+    }
+
     @GetMapping("/service2/confirmation")
     public SampleDTO getService2Message() {
         return internalService.getService2Confirmation();
