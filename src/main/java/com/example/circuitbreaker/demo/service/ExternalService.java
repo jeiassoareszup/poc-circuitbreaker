@@ -1,7 +1,7 @@
 package com.example.circuitbreaker.demo.service;
 
 import com.example.circuitbreaker.demo.commons.dto.SampleDTO;
-import com.example.circuitbreaker.demo.commons.example.ExternalServiceCallException;
+import com.example.circuitbreaker.demo.commons.exception.ExternalServiceCallException;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.timelimiter.TimeLimiter;
 import io.vavr.control.Try;

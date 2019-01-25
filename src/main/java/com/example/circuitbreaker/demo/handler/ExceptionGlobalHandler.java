@@ -1,7 +1,7 @@
 package com.example.circuitbreaker.demo.handler;
 
 import com.example.circuitbreaker.demo.commons.dto.SampleDTO;
-import com.example.circuitbreaker.demo.commons.example.ExternalServiceCallException;
+import com.example.circuitbreaker.demo.commons.exception.ExternalServiceCallException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

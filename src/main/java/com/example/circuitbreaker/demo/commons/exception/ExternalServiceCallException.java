@@ -1,4 +1,4 @@
-package com.example.circuitbreaker.demo.commons.example;
+package com.example.circuitbreaker.demo.commons.exception;
 
 public class ExternalServiceCallException extends RuntimeException {
 
