@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    consul:
+      enabled: true
+      config:
+        name: circuitbreaker
+        format: yaml
+        enabled: true
+        profileSeparator: '::'
+        watch:
+          enabled: true
+      port: 8500
+      host: localhost

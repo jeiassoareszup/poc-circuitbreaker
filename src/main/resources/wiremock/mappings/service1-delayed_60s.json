@@ -1,11 +1,11 @@
 {
   "request": {
     "method": "GET",
-    "url": "/external-service2/timeout"
+    "url": "/external-service1/timeout"
   },
   "response": {
     "status": 504,
-    "fixedDelayMilliseconds": 10000,
+    "fixedDelayMilliseconds": 60000,
     "headers": {
       "Content-Type": "application/json"
     },

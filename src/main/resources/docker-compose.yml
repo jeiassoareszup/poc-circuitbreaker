@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   wiremock:
     image: rodolpheche/wiremock
@@ -8,3 +9,21 @@ services:
     volumes:
       - ./wiremock/__files:/home/wiremock/__files
       - ./wiremock/mappings:/home/wiremock/mappings
+
+  consul:
+    image: consul
+    container_name: consul
+    ports:
+      - "8500:8500"
+    volumes:
+      - ./consul/config:/consul/config
+
+  git2consul:
+    image: cimpress/git2consul
+    depends_on:
+      - consul
+    container_name: git2consul
+    volumes:
+      - ./consul/git2consul:/config
+    command: --endpoint consul --config-file /config/git2consul.json
+
